@@ -1,0 +1,43 @@
+<app-student-body></app-student-body>
+<div class="container">
+<div class="row mt-5">
+   
+  <div class="col-md-4 mb-3" *ngFor="let event of events">
+    <div class="card text-center">
+      <div class="card-body">
+            <h2 class="card-text">{{event.name}}</h2>
+            <p class="card-text">{{event.description}}</p>
+            <p class="card-text" hidden>{{event.course_id}}</p>
+            <a href="#" class="btn btn-primary" (click)="enrollCourse(event, _authService.loggedInUserName())">Enroll Now</a>
+            <p class="card-text">{{_authService.loggedInUserName()}}</p>
+          </div>
+          <div class="card-footer text-muted">
+            {{event.date}}
+          </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!--
+
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" *ngFor="let event of events">
+    <div class="card text-center">
+      <div class="card-body">
+        <h2 class="card-text">{{event.name}}</h2>
+        <p class="card-text">{{event.description}}</p>
+        <a href="#" class="btn btn-primary" (click)="enrollCourse(event)">Enroll Now</a>
+        <p class="card-text">{{_authService.loggedInUserName()}}</p>
+      </div>
+      <div class="card-footer text-muted">
+        {{event.date}}
+      </div>
+    </div>
+  </div>
+</div>
+-->
