@@ -20,4 +20,7 @@ export class EventService {
   enrollCourse(user) {
     return this.http.post<any>(this._specialEventsUrl, user)
   }
+  enrolledEvents() {
+    return !!localStorage.getItem('EventToken')    
+  }
 }

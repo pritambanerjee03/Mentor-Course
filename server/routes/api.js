@@ -7,9 +7,9 @@ const EnrolledCourse  = require('../models/EnrolledCourse');
 const jwt = require('jsonwebtoken')
 let userId=""
 mongoose.Promise = global.Promise;
-//const db = "mongodb://localhost:27017/pritam_db";
+const db = "mongodb://localhost:27017/pritam_db";
 
-const db = "mongodb+srv://pritam03:tukai1996@cluster0-v2k4n.mongodb.net/pritam_db"
+//const db = "mongodb+srv://pritam03:tukai1996@cluster0-v2k4n.mongodb.net/pritam_db"
 
 mongoose.connect(db, function(err){
     if(err){
@@ -58,7 +58,7 @@ router.post('/events', (req, res) => {
 
 
 
-router.get('/special',  (req, res) => {
+router.get('/special', verifyToken, (req, res) => {
 
   console.log("******from special get method Api**" + userId);
   EnrolledCourse.find({ $or: [{ studentId: userId }] },(err, docs) => {
@@ -67,7 +67,7 @@ router.get('/special',  (req, res) => {
   });
 });
 
-router.post('/special', (req, res) => {
+router.post('/special', verifyToken, (req, res) => {
   let SpecialEventData = req.body
   userId = req.body.studentId
   console.log("*******from Post Method Api*****"+ userId);
@@ -76,7 +76,8 @@ router.post('/special', (req, res) => {
     if (err) {
       console.log(err)      
     } else {
-      res.status(200).send(enrolledEvents)
+      let enrollEvents = {keyCourse:enrolledEvents.studentId}
+      res.status(200).send({enrollEvents})
     }
   })
 });
@@ -86,16 +87,23 @@ router.post('/register', (req, res) => {
   let userData = req.body
   userId = req.body.email
   let user = new User(userData)
-  user.save((err, registeredUser) => {
+  User.findOne({userId: userData.email}, (err, userdetails) => {
+    if (!userdetails) {
+      user.save((err, registeredUser) => {
     if (err) {
       console.log(err)      
     } else {
       let payload = {subject: registeredUser._id}
-     
       let token = jwt.sign(payload, 'secretKey')
-      res.status(200).send({token})
+      let sample = {email : user.email, key:token}
+      res.status(200).send({sample})
+    }
+  })      
+    } else  {
+      console.log(err+" ******Alraedy An user exist") 
     }
   })
+ 
 })
 
 router.post('/login', (req, res) => {

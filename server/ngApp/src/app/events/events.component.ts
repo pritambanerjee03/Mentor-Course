@@ -28,7 +28,7 @@ export class EventsComponent implements OnInit {
     this._eventService.enrollCourse(event)
     .subscribe(
       res => {
-        console.log('Have')
+        localStorage.setItem('EventToken', res.enrollEvents.keyCourse)
         this._router.navigate(['/special'])
       } ,
       
