@@ -33,14 +33,12 @@
               User Password is Required
             </span>
             </div>
-
-
+            <div class="alert alert-danger" *ngIf="errorServerMessage != null">
+              <strong>Danger! {{errorServerMessage}}</strong> 
+            </div>
             <button type="button" (click)="loginUser()" [disabled]="studentForm.invalid" class="btn btn-success float-right">Login</button>
           </form>
-          <div *ngIf="errorServerMessage != null">
-            <p>{{errorServerMessage}}</p>
-
-          </div>
+          
         </div>
         <!--/card-block-->
       </div>

@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
 export class EventsComponent implements OnInit {
 
   events = []
-
+  errorServerMessageEvents: String = null;
   constructor(private _eventService: EventService, private _authService: AuthService,
     private _router: Router) { }
 
@@ -32,7 +32,7 @@ export class EventsComponent implements OnInit {
         this._router.navigate(['/special'])
       } ,
       
-      err => console.log(err) 
+      err => {this.errorServerMessageEvents = err.error;  }
     )
 
   }

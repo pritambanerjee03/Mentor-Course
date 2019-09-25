@@ -71,13 +71,22 @@ router.post('/special', verifyToken, (req, res) => {
   let SpecialEventData = req.body
   userId = req.body.studentId
   console.log("*******from Post Method Api*****"+ userId);
-  let specialevents = new EnrolledCourse(SpecialEventData)
-  specialevents.save((err, enrolledEvents) => {
-    if (err) {
-      console.log(err)      
+
+  EnrolledCourse.findOne({ course_id: SpecialEventData.course_id , 
+     name: SpecialEventData.name , studentId: SpecialEventData.studentId }, (err, eventdetails) => {
+    if (!eventdetails) {
+      let specialevents = new EnrolledCourse(SpecialEventData)
+      specialevents.save((err, enrolledEvents) => {
+        if (err) {
+          console.log(err)      
+        } else {
+          let enrollEvents = {keyCourse:enrolledEvents.studentId}
+          res.status(200).send({enrollEvents})
+        }
+      })
     } else {
-      let enrollEvents = {keyCourse:enrolledEvents.studentId}
-      res.status(200).send({enrollEvents})
+      res.status(401).send('Alraedy you enrolled for the course, Choose another')
+      console.log(err+" ******Alraedy A Course exist") 
     }
   })
 });
@@ -86,9 +95,10 @@ router.post('/special', verifyToken, (req, res) => {
 router.post('/register', (req, res) => {
   let userData = req.body
   userId = req.body.email
-  let user = new User(userData)
-  User.findOne({userId: userData.email}, (err, userdetails) => {
+  
+  User.findOne({email: userData.email}, (err, userdetails) => {
     if (!userdetails) {
+      let user = new User(userData)
       user.save((err, registeredUser) => {
     if (err) {
       console.log(err)      
