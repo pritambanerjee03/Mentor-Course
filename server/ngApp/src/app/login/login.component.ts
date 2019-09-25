@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';  
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  errorServerMessage: String = null;
   loginUserData = {}
  
   constructor(private _auth: AuthService,
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userEmail',res.sample.email)
         this._router.navigate(['/special'])
       },
-      err => console.log(err) 
+      err => {this.errorServerMessage = err.error;  }
     ) 
   }
 

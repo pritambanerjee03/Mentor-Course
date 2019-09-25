@@ -17,7 +17,7 @@
                 <label for="email" class="control-label">Username</label>
                 <input type="text" [(ngModel)]="registerUserData.email" id="email" name="email" class="form-control rounded-0" 
                 #userNameControl="ngModel" required>
-                <span class="help-block"
+                <span class="help-block text-danger"
                     *ngIf="userNameControl.invalid && userNameControl.touched">
                 User Name is Required
               </span>
@@ -28,7 +28,7 @@
                 <label for="password" class="control-label">Password</label>
                 <input type="password" [(ngModel)]="registerUserData.password" id="password" name="password" class="form-control rounded-0"  
                 #userPasswordControl="ngModel" required>
-                <span class="help-block"
+                <span class="help-block text-danger"
                     *ngIf="userPasswordControl.invalid && userPasswordControl.touched">
                 User Password is Required
               </span>

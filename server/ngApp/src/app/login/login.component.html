@@ -17,7 +17,7 @@
               <label for="email" class="control-label">Username</label>
               <input type="text" [(ngModel)]="loginUserData.email" id="email" name="email" class="form-control rounded-0" 
               #userNameControl="ngModel" required>
-              <span class="help-block"
+              <span class="help-block text-danger"
                   *ngIf="userNameControl.invalid && userNameControl.touched">
               User Name is Required
             </span>
@@ -28,7 +28,7 @@
               <label for="password" class="control-label">Password</label>
               <input type="password" [(ngModel)]="loginUserData.password" id="password" name="password" class="form-control rounded-0"  
               #userPasswordControl="ngModel" required>
-              <span class="help-block"
+              <span class="help-block text-danger"
                   *ngIf="userPasswordControl.invalid && userPasswordControl.touched">
               User Password is Required
             </span>
@@ -37,6 +37,10 @@
 
             <button type="button" (click)="loginUser()" [disabled]="studentForm.invalid" class="btn btn-success float-right">Login</button>
           </form>
+          <div *ngIf="errorServerMessage != null">
+            <p>{{errorServerMessage}}</p>
+
+          </div>
         </div>
         <!--/card-block-->
       </div>
