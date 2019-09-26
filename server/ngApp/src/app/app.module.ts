@@ -14,6 +14,9 @@ import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { StudentBodyComponent } from './student-body/student-body.component';
+import { MentorBodyComponent } from './mentor-body/mentor-body.component';
+import { MentorLoginComponent } from './mentor-login/mentor-login.component';
+import { MentorRegisterComponent } from './mentor-register/mentor-register.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { StudentBodyComponent } from './student-body/student-body.component';
     RegisterComponent,
     EventsComponent,
     SpecialEventsComponent,
-    StudentBodyComponent
+    StudentBodyComponent,
+    MentorBodyComponent,
+    MentorLoginComponent,
+    MentorRegisterComponent
   ],
   imports: [
     BrowserModule,

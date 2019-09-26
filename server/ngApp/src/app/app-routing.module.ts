@@ -6,7 +6,9 @@ import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthGuard } from './auth.guard';
 import { StudentBodyComponent } from './student-body/student-body.component';
-
+import { MentorBodyComponent } from './mentor-body/mentor-body.component';
+import { MentorLoginComponent } from './mentor-login/mentor-login.component';
+import { MentorRegisterComponent } from './mentor-register/mentor-register.component';
 const routes: Routes = [
   {
     path: '',
@@ -31,7 +33,19 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'studentBody',
+    path: 'mentorBody',
+    component: MentorBodyComponent
+  },
+  {
+    path: 'mentor-login',
+    component: MentorLoginComponent
+  },
+  {
+    path: 'mentor-register',
+    component: MentorRegisterComponent
+  },
+  {
+    path: 'mentorBody',
     component: StudentBodyComponent
   }
 ];

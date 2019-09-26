@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const Mentor = require('../models/mentor');
 const  Course  = require('../models/course');
 const EnrolledCourse  = require('../models/EnrolledCourse');
 const jwt = require('jsonwebtoken')
@@ -133,6 +134,53 @@ router.post('/login', (req, res) => {
         let token = jwt.sign(payload, 'secretKey')
         let sample = {email : user.email, key:token}
         res.status(200).send({sample})
+      }
+    }
+  })
+})
+
+router.post('/mentorRegister', (req, res) => {
+  let userData = req.body
+  userId = req.body.email
+  
+  User.findOne({email: userData.email}, (err, userdetails) => {
+    if (!userdetails) {
+      let user = new User(userData)
+      user.save((err, registeredUser) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      let payload = {subject: registeredUser._id}
+      let token = jwt.sign(payload, 'secretKey')
+      let sample = {email : user.email, key:token}
+      res.status(200).send({sample})
+    }
+  })      
+    } else  {
+      console.log(err+" ******Alraedy An user exist") 
+    }
+  })
+ 
+})
+
+router.post('/mentorLogin', (req, res) => {
+  let mentorData = req.body
+  //userId = req.body.email
+  Mentor.findOne({email: mentorData.email}, (err, mentor) => {
+    if (err) {
+      console.log(err)    
+    } else {
+      if (!mentor) {
+        res.status(401).send('Invalid Email')
+      } else 
+      if ( mentor.password !== mentorData.password) {
+        res.status(401).send('Invalid Password')
+      } else {
+        let payload = {subject: mentor._id}
+        let token = jwt.sign(payload, 'secretKey')
+        let mentorsample = {email : mentor.email, key:token}
+        res.status(200).send({mentorsample})
+       
       }
     }
   })
