@@ -17,6 +17,7 @@ import { StudentBodyComponent } from './student-body/student-body.component';
 import { MentorBodyComponent } from './mentor-body/mentor-body.component';
 import { MentorLoginComponent } from './mentor-login/mentor-login.component';
 import { MentorRegisterComponent } from './mentor-register/mentor-register.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MentorRegisterComponent } from './mentor-register/mentor-register.compo
     StudentBodyComponent,
     MentorBodyComponent,
     MentorLoginComponent,
-    MentorRegisterComponent
+    MentorRegisterComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
