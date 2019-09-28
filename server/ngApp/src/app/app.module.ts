@@ -18,6 +18,8 @@ import { MentorBodyComponent } from './mentor-body/mentor-body.component';
 import { MentorLoginComponent } from './mentor-login/mentor-login.component';
 import { MentorRegisterComponent } from './mentor-register/mentor-register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CoursesComponent } from './courses/courses.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     MentorBodyComponent,
     MentorLoginComponent,
     MentorRegisterComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CoursesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

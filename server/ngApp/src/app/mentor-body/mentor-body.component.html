@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/events" routerLinkActive="active">Link 1</a>
+          <a class="nav-link" routerLink="/courses" routerLinkActive="active">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"   routerLink="/special" routerLinkActive="active">Link 2</a>
+          <a class="nav-link"   routerLink="/mentorProfile" routerLinkActive="active">My Profile</a>
         </li>
       </ul>
       <ul class="navbar-nav">
@@ -23,7 +23,7 @@
     </div>
   </nav> 
 
-  <div class="jumbotron text-center" *ngIf="router.url == '/mentorBody'">
+  <div class="jumbotron text-center" *ngIf="router.url == '/courses'">
       <h1>ABC Institute</h1>  
       <p>We specialize in Teaching</p> 
      <!-- <form class="form-inline">

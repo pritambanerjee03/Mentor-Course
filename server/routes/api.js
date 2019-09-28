@@ -5,8 +5,9 @@ const User = require('../models/user');
 const Mentor = require('../models/mentor');
 const  Course  = require('../models/course');
 const EnrolledCourse  = require('../models/EnrolledCourse');
-const jwt = require('jsonwebtoken')
-let userId=""
+const jwt = require('jsonwebtoken');
+let userId ="";
+let teacherId ="";
 mongoose.Promise = global.Promise;
 const db = "mongodb://localhost:27017/pritam_db";
 
@@ -62,7 +63,7 @@ router.post('/events', (req, res) => {
 router.get('/special', verifyToken, (req, res) => {
 
   console.log("******from special get method Api**" + userId);
-  EnrolledCourse.find({ $or: [{ studentId: userId }] },(err, docs) => {
+  EnrolledCourse.find({ studentId: userId },(err, docs) => {
       if (!err) { res.send(docs); }
       else { console.log('Error in Retriving Courses :' + JSON.stringify(err, undefined, 2)); }
   });
@@ -92,6 +93,14 @@ router.post('/special', verifyToken, (req, res) => {
   })
 });
 
+router.get('/courses',(req, res) => {
+
+  console.log("******from courses get method Api**" + userId);
+  EnrolledCourse.find({ mentorId: teacherId },(err, docs) => {
+      if (!err) { res.send(docs); }
+      else { console.log('Error in Retriving Courses :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
 
 router.post('/register', (req, res) => {
   let userData = req.body
@@ -140,20 +149,20 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/mentorRegister', (req, res) => {
-  let userData = req.body
-  userId = req.body.email
+  let mentorData = req.body
+  teacherId = req.body.email
   
-  User.findOne({email: userData.email}, (err, userdetails) => {
-    if (!userdetails) {
-      let user = new User(userData)
-      user.save((err, registeredUser) => {
+  Mentor.findOne({email: mentorData.email}, (err, mentordetails) => {
+    if (!mentordetails) {
+      let mentor = new Mentor(mentorData)
+      mentor.save((err, registeredMentor) => {
     if (err) {
       console.log(err)      
     } else {
-      let payload = {subject: registeredUser._id}
+      let payload = {subject: registeredMentor._id}
       let token = jwt.sign(payload, 'secretKey')
-      let sample = {email : user.email, key:token}
-      res.status(200).send({sample})
+      let mentorsample = {email : mentor.email, key:token}
+      res.status(200).send({mentorsample})
     }
   })      
     } else  {
@@ -165,7 +174,7 @@ router.post('/mentorRegister', (req, res) => {
 
 router.post('/mentorLogin', (req, res) => {
   let mentorData = req.body
-  //userId = req.body.email
+  teacherId = req.body.email
   Mentor.findOne({email: mentorData.email}, (err, mentor) => {
     if (err) {
       console.log(err)    

@@ -10,6 +10,8 @@ import { MentorBodyComponent } from './mentor-body/mentor-body.component';
 import { MentorLoginComponent } from './mentor-login/mentor-login.component';
 import { MentorRegisterComponent } from './mentor-register/mentor-register.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CoursesComponent } from './courses/courses.component';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -46,12 +48,20 @@ const routes: Routes = [
     component: MentorRegisterComponent
   },
   {
-    path: 'mentorBody',
+    path: 'studentBody',
     component: StudentBodyComponent
   },
   {
     path: 'contactUs',
     component: ContactUsComponent
+  },
+  {
+    path: 'courses',
+    component: CoursesComponent
+  },
+  {
+    path: 'mentorProfile',
+    component: ProfileComponent
   }
 ];
 

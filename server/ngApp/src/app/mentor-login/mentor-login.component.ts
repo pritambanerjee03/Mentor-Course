@@ -24,7 +24,7 @@ export class MentorLoginComponent implements OnInit {
       res => {
         localStorage.setItem('mentorToken', res.mentorsample.key)
         localStorage.setItem('mentorEmail',res.mentorsample.email)
-        this._router.navigate(['/mentorBody'])
+        this._router.navigate(['/courses'])
       },
       err => {this.errorServerMessage = err.error;  }
     ) 
