@@ -209,4 +209,15 @@ router.post('/addCourse', (req, res) => {
   })
 });
 
+router.post('/deleteCourse', (req, res) => {
+  let courseData = req.body
+  Course.remove({_id: courseData._id}, (err, deletedCourse) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      res.status(200).send('Course Id '+courseData._id +' is Deleted')
+    }
+  })
+});
+
 module.exports = router;

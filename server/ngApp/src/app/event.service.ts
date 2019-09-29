@@ -7,6 +7,7 @@ export class EventService {
   private _eventsUrl = "http://localhost:3000/api/events";
   private _specialEventsUrl = "http://localhost:3000/api/special";
   private _coursesUrl = "http://localhost:3000/api/courses";
+  private _deleteCourseUrl = "http://localhost:3000/api/deleteCourse";
   constructor(private http: HttpClient) { }
 
   getEvents() {
@@ -25,5 +26,8 @@ export class EventService {
   }
   getCourses() {
     return this.http.get<any>(this._coursesUrl)
+  }
+  deleteCourse(course){
+    return this.http.post<any>(this._deleteCourseUrl, course)
   }
 }
