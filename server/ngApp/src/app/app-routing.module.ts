@@ -13,6 +13,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { ViewCoursesComponent } from './view-courses/view-courses.component';
 const routes: Routes = [
   {
     path: '',
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'addCourses',
     component: AddCourseComponent
+  },
+  {
+    path: 'viewCourses',
+    component: ViewCoursesComponent
   }
 ];
 
