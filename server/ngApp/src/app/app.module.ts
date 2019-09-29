@@ -20,6 +20,7 @@ import { MentorRegisterComponent } from './mentor-register/mentor-register.compo
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ProfileComponent } from './profile/profile.component';
     MentorRegisterComponent,
     ContactUsComponent,
     CoursesComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,

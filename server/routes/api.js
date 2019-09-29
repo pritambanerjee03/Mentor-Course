@@ -195,4 +195,18 @@ router.post('/mentorLogin', (req, res) => {
   })
 })
 
+router.post('/addCourse', (req, res) => {
+  let courseData = req.body
+  //userId =  req.body.studentId
+  //console.log("*********"+userId)
+  let courses = new Course(courseData)
+  courses.save((err, courseAdded) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      res.status(200).send(courseAdded)
+    }
+  })
+});
+
 module.exports = router;
