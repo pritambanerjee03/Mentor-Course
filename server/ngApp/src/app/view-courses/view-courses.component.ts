@@ -25,20 +25,21 @@ export class ViewCoursesComponent implements OnInit {
     this._eventService.deleteCourse(course)
     .subscribe(
       res => {
-
-        this._eventService.getEvents()
-      .subscribe(
-        res => this.viewCourses = res,
-        err => console.log(err),
-      )
         this.errorServerMessageCourses = res.error.text;
-        
-       // this._router.navigate(['/addCourses'])
       } ,
       
       err => {  this.errorServerMessageCourses = err.error.text;}
     )
+    this._eventService.getEvents()
+    .subscribe(
+      res => this.viewCourses = res,
+      err => console.log(err),
+    )
+  }
 
+  editCourse(course){
+    this._eventService.setCourse(course);
+    this._router.navigate(['/addCourses'])
   }
 
 }

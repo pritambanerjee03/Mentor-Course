@@ -9,7 +9,6 @@ export class AuthService {
   private _loginUrl = "http://localhost:3000/api/login";
   private _registerMentorUrl = "http://localhost:3000/api/mentorRegister";
   private _loginMentorUrl = "http://localhost:3000/api/mentorLogin";
-  private _addCourseUrl = "http://localhost:3000/api/addCourse";
   public _user =""
   constructor(private http: HttpClient,
               private _router: Router) { }
@@ -66,7 +65,4 @@ export class AuthService {
     return localStorage.getItem('mentorEmail')   
   }
 
-  registerCourses(course) {
-    return this.http.post<any>(this._addCourseUrl, course)
-  }
 }

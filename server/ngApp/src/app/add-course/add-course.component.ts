@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { EventService } from '../event.service';
 import { Router } from '@angular/router'
 @Component({
   selector: 'app-add-course',
@@ -8,22 +9,26 @@ import { Router } from '@angular/router'
 })
 export class AddCourseComponent implements OnInit {
 
-  courseAddData = {}
-
-  constructor(private _auth: AuthService,
+  courseAddData:any = {}
+  courseUpdateData:any = {}
+  constructor(private _auth: AuthService,private _eventService: EventService,
     private _router: Router) { }
 
   ngOnInit() {
+
+   //this.courseAddData = this._eventService.getCourse()
   }
   registerCourses() {
-    this._auth.registerCourses(this.courseAddData)
+   this._eventService.registerCourses(this.courseAddData)
     .subscribe(
       res => {
-       
-        this._router.navigate(['/'])
+       this._router.navigate(['/viewCourses'])
       },
       err => console.log(err)
-    )      
-  }
+    ) 
+  
+    
+
+}
 
 }
