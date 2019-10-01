@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
+
   errorServerMessage: String = null;
-  loginMentorData = {}
+  loginAdminData = {}
   constructor(private _auth: AuthService,
     private _router: Router) { }
 
@@ -16,12 +17,12 @@ export class AdminLoginComponent implements OnInit {
   }
 
   loginAdmin () {
-    this._auth.loginAdmin(this.loginMentorData)
+    this._auth.loginAdmin(this.loginAdminData)
     .subscribe(
       res => {
-        localStorage.setItem('token', res.sample.key)
-        localStorage.setItem('adminEmail',res.sample.email)
-        this._router.navigate(['/'])
+        localStorage.setItem('adminToken', res.adminsample.key)
+        localStorage.setItem('adminEmail',res.adminsample.email)
+        this._router.navigate(['/viewCourses'])
       },
       err => {this.errorServerMessage = err.error;  }
     ) 

@@ -15,7 +15,7 @@
             [class.has-error]="userNameControl.invalid && userNameControl.touched" 
               [class.has-success]="userNameControl.valid">
               <label for="email" class="control-label">Username</label>
-              <input type="text" [(ngModel)]="loginMentorData.email" id="email" name="email" class="form-control rounded-0" 
+              <input type="text" [(ngModel)]="loginAdminData.email" id="email" name="email" class="form-control rounded-0" 
               #userNameControl="ngModel" required>
               <span class="help-block text-danger"
                   *ngIf="userNameControl.invalid && userNameControl.touched">
@@ -26,7 +26,7 @@
             [class.has-error]="userPasswordControl.invalid && userPasswordControl.touched" 
               [class.has-success]="userPasswordControl.valid">
               <label for="password" class="control-label">Password</label>
-              <input type="password" [(ngModel)]="loginMentorData.password" id="password" name="password" class="form-control rounded-0"  
+              <input type="password" [(ngModel)]="loginAdminData.password" id="password" name="password" class="form-control rounded-0"  
               #userPasswordControl="ngModel" required>
               <span class="help-block text-danger"
                   *ngIf="userPasswordControl.invalid && userPasswordControl.touched">

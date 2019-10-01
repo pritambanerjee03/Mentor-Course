@@ -16,7 +16,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { ViewCoursesComponent } from './view-courses/view-courses.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { AdminBodyComponent } from './admin-body/admin-body.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component';    
+import { AdminLoginComponent } from './admin-login/admin-login.component'; 
+import { NotFound404Component } from './not-found404/not-found404.component';   
 const routes: Routes = [
   {
     path: '',
@@ -87,6 +88,10 @@ const routes: Routes = [
   {
     path: 'admin-login',
     component: AdminLoginComponent
+  },
+  {
+    path: '**',
+    component: NotFound404Component
   }
 ];
 

@@ -9,6 +9,8 @@ export class AuthService {
   private _loginUrl = "http://localhost:3000/api/login";
   private _registerMentorUrl = "http://localhost:3000/api/mentorRegister";
   private _loginMentorUrl = "http://localhost:3000/api/mentorLogin";
+  private _registerAdminUrl = "http://localhost:3000/api/adminRegister";
+  private _loginAdminUrl = "http://localhost:3000/api/adminLogin";
   public _user =""
   constructor(private http: HttpClient,
               private _router: Router) { }
@@ -41,12 +43,30 @@ export class AuthService {
     this._router.navigate(['/'])
   }
 
+  registerAdmin(user) {
+    return this.http.post<any>(this._registerAdminUrl, user)
+  }
+
+  loginAdmin(user) {
+    return this.http.post<any>(this._loginAdminUrl, user)
+  }
+
+  logoutAdmin() {
+    localStorage.removeItem('adminToken')
+    localStorage.removeItem('adminEmail')
+    this._router.navigate(['/'])
+  }
+
   getToken() {
     return localStorage.getItem('token')
   }
 
   getMentorToken() {
     return localStorage.getItem('mentorToken')
+  }
+
+  getAdminToken() {
+    return localStorage.getItem('adminToken')
   }
 
   loggedIn() {
@@ -63,6 +83,14 @@ export class AuthService {
 
   loggedInMentorName() {
     return localStorage.getItem('mentorEmail')   
+  }
+
+  loggedInAdmin() {
+    return !!localStorage.getItem('adminToken')    
+  }
+
+  loggedInAdminName() {
+    return localStorage.getItem('adminEmail')   
   }
 
 }

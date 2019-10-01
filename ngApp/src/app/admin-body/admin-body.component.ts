@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-admin-body',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminBodyComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router, private _authService: AuthService) { }
 
   ngOnInit() {
   }

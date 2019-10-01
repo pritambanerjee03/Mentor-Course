@@ -25,6 +25,7 @@ import { ViewCoursesComponent } from './view-courses/view-courses.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { AdminBodyComponent } from './admin-body/admin-body.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { NotFound404Component } from './not-found404/not-found404.component';
 
 
 
@@ -46,7 +47,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     ViewCoursesComponent,
     EditCourseComponent,
     AdminBodyComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    NotFound404Component
   ],
   imports: [
     BrowserModule,

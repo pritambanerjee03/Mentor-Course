@@ -9,6 +9,7 @@ const EnrolledCourse  = require('../models/EnrolledCourse');
 const jwt = require('jsonwebtoken');
 let userId ="";
 let teacherId ="";
+let adminId ="";
 mongoose.Promise = global.Promise;
 const db = "mongodb://localhost:27017/pritam_db";
 
@@ -235,47 +236,47 @@ router.put('/editCourse', (req, res) => {
 
 
 
-router.post('/adminRegister', (req, res) => {
-  let mentorData = req.body
-  teacherId = req.body.email
+/*router.post('/adminRegister', (req, res) => {
+  let adminData = req.body
+  adminId = req.body.email
   
-  Mentor.findOne({email: mentorData.email}, (err, mentordetails) => {
-    if (!mentordetails) {
-      let mentor = new Mentor(mentorData)
-      mentor.save((err, registeredMentor) => {
+  Admin.findOne({email: adminData.email}, (err, admindetails) => {
+    if (!admindetails) {
+      let admin = new Admin(adminData)
+      admin.save((err, registeredAdmin) => {
     if (err) {
       console.log(err)      
     } else {
-      let payload = {subject: registeredMentor._id}
+      let payload = {subject: registeredAdmin._id}
       let token = jwt.sign(payload, 'secretKey')
-      let mentorsample = {email : mentor.email, key:token}
-      res.status(200).send({mentorsample})
+      let adminsample = {email : admin.email, key:token}
+      res.status(200).send({adminsample})
     }
   })      
     } else  {
-      console.log(err+" ******Alraedy An admin exist") 
+      console.log(err+" ******Alraedy An Admin exist") 
     }
   })
  
-})
+})*/
 
 router.post('/adminLogin', (req, res) => {
-  let mentorData = req.body
-  teacherId = req.body.email
-  Mentor.findOne({email: mentorData.email}, (err, mentor) => {
+  let adminData = req.body
+  adminId = req.body.email
+  Admin.findOne({email: adminData.email}, (err, admin) => {
     if (err) {
       console.log(err)    
     } else {
-      if (!mentor) {
+      if (!admin) {
         res.status(401).send('Invalid Email')
       } else 
-      if ( mentor.password !== mentorData.password) {
+      if ( admin.password !== adminData.password) {
         res.status(401).send('Invalid Password')
       } else {
-        let payload = {subject: mentor._id}
+        let payload = {subject: admin._id}
         let token = jwt.sign(payload, 'secretKey')
-        let mentorsample = {email : mentor.email, key:token}
-        res.status(200).send({mentorsample})
+        let adminsample = {email : admin.email, key:token}
+        res.status(200).send({adminsample})
        
       }
     }
