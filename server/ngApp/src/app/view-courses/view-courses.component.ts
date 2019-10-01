@@ -39,7 +39,7 @@ export class ViewCoursesComponent implements OnInit {
 
   editCourse(course){
     this._eventService.setCourse(course);
-    this._router.navigate(['/addCourses'])
+    this._router.navigate(['/editCourses'])
   }
 
 }

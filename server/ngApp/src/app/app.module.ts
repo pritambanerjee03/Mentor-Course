@@ -22,6 +22,10 @@ import { CoursesComponent } from './courses/courses.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { ViewCoursesComponent } from './view-courses/view-courses.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { AdminBodyComponent } from './admin-body/admin-body.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+
 
 
 @NgModule({
@@ -39,7 +43,10 @@ import { ViewCoursesComponent } from './view-courses/view-courses.component';
     CoursesComponent,
     ProfileComponent,
     AddCourseComponent,
-    ViewCoursesComponent
+    ViewCoursesComponent,
+    EditCourseComponent,
+    AdminBodyComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

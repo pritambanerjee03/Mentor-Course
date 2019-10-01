@@ -10,13 +10,12 @@ import { Router } from '@angular/router'
 export class AddCourseComponent implements OnInit {
 
   courseAddData:any = {}
-  courseUpdateData:any = {}
   constructor(private _auth: AuthService,private _eventService: EventService,
     private _router: Router) { }
 
   ngOnInit() {
 
-   //this.courseAddData = this._eventService.getCourse()
+     
   }
   registerCourses() {
    this._eventService.registerCourses(this.courseAddData)

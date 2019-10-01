@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const Mentor = require('../models/mentor');
+const Admin = require('../models/admin');
 const  Course  = require('../models/course');
 const EnrolledCourse  = require('../models/EnrolledCourse');
 const jwt = require('jsonwebtoken');
@@ -219,5 +220,66 @@ router.post('/deleteCourse', (req, res) => {
     }
   })
 });
+
+router.put('/editCourse', (req, res) => {
+  let editCourseData = req.body
+  let courseId = req.body._id
+  Course.findByIdAndUpdate(courseId,req.body,{new: true},(err, courseEdited) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      res.status(200).send(courseEdited)
+    }
+  })
+});
+
+
+
+router.post('/adminRegister', (req, res) => {
+  let mentorData = req.body
+  teacherId = req.body.email
+  
+  Mentor.findOne({email: mentorData.email}, (err, mentordetails) => {
+    if (!mentordetails) {
+      let mentor = new Mentor(mentorData)
+      mentor.save((err, registeredMentor) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      let payload = {subject: registeredMentor._id}
+      let token = jwt.sign(payload, 'secretKey')
+      let mentorsample = {email : mentor.email, key:token}
+      res.status(200).send({mentorsample})
+    }
+  })      
+    } else  {
+      console.log(err+" ******Alraedy An admin exist") 
+    }
+  })
+ 
+})
+
+router.post('/adminLogin', (req, res) => {
+  let mentorData = req.body
+  teacherId = req.body.email
+  Mentor.findOne({email: mentorData.email}, (err, mentor) => {
+    if (err) {
+      console.log(err)    
+    } else {
+      if (!mentor) {
+        res.status(401).send('Invalid Email')
+      } else 
+      if ( mentor.password !== mentorData.password) {
+        res.status(401).send('Invalid Password')
+      } else {
+        let payload = {subject: mentor._id}
+        let token = jwt.sign(payload, 'secretKey')
+        let mentorsample = {email : mentor.email, key:token}
+        res.status(200).send({mentorsample})
+       
+      }
+    }
+  })
+})
 
 module.exports = router;

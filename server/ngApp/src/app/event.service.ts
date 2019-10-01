@@ -47,7 +47,7 @@ export class EventService {
     return this.http.post<any>(this._addCourseUrl, course)
   }
 
-  updateCourses(course) {
-    return this.http.post<any>(this._updateCourseUrl, course)
+  editCourses(course) {
+    return this.http.put<any>(this._updateCourseUrl, course)
   }
 }
