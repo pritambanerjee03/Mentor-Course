@@ -46,6 +46,7 @@ router.get('/events', (req, res) => {
   });
 });
 
+
 router.post('/events', (req, res) => {
   let eventData = req.body
   //userId =  req.body.studentId
@@ -281,6 +282,21 @@ router.post('/adminLogin', (req, res) => {
       }
     }
   })
-})
+});
+
+router.post('/searchCourse', (req, res) => {
+  let searchData = req.body.searchItem
+  console.log('**** : ' + JSON.stringify(req.body));
+  Course.find({
+    $or: [
+      { '_id': searchData},
+      { 'name': searchData },
+      { 'description': searchData }
+    ]
+  },(err, docs) => {
+      if (!err) { res.send(docs); }
+      else { console.log('Error in Retriving Employees :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
 
 module.exports = router;

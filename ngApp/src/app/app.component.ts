@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
+import { Component, OnInit } from '@angular/core';
+import { EventService } from './event.service';
 import { Router } from '@angular/router'; 
 
 @Component({
@@ -7,7 +7,24 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
-  constructor(public router: Router, private _authService: AuthService){}
+  searchedCourse: any;
+  searchedCourseValues:any = []
+  constructor(public router: Router, private _eventService: EventService){}
+
+  ngOnInit() {    
+    
+  }
+
+  searchCourse (searchedCourse) {
+     this._eventService.searchResult(searchedCourse).subscribe(
+       res => {
+        this.searchedCourseValues = res
+       },
+       err => {
+        console.log('err: ' + JSON.stringify(err));
+       }
+     )
+  }
 }

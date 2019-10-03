@@ -23,18 +23,4 @@
     </div>
   </nav> 
 
-  <div class="jumbotron text-center" *ngIf="router.url == '/events' || router.url == '/special'">
-      <h1>ABC Institute</h1>  
-      <p>We specialize in Teaching</p> 
-     <!-- <form class="form-inline">
-        <div class="input-group">
-          <input type="email" class="form-control" size="50" placeholder="Search Courses" required>
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-danger">Enroll</button>
-          </div>
-        </div>
-      </form>-->
-      <div class="input-group-btn" >
-        <button type="button" class="btn btn-danger">Enroll Now</button>
-      </div>
-    </div>
+<app-search-course *ngIf="router.url == '/events' || router.url == '/special'"></app-search-course>

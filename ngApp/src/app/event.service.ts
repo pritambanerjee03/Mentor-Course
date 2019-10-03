@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http'
 export class EventService {
 
   public _setCourse:any;
+  public _setCourseData:any;
 
   private _eventsUrl = "http://localhost:3000/api/events";
   private _specialEventsUrl = "http://localhost:3000/api/special";
@@ -12,6 +13,7 @@ export class EventService {
   private _deleteCourseUrl = "http://localhost:3000/api/deleteCourse";
   private _addCourseUrl = "http://localhost:3000/api/addCourse";
   private _updateCourseUrl = "http://localhost:3000/api/editCourse";
+  private _searchCourseUrl = "http://localhost:3000/api/searchCourse";
   constructor(private http: HttpClient) { }
 
   getEvents() {
@@ -49,5 +51,11 @@ export class EventService {
 
   editCourses(course) {
     return this.http.put<any>(this._updateCourseUrl, course)
+  }
+  
+  searchResult(searchField) {
+    const search = {searchItem: searchField};
+    console.log('eventService: ' + JSON.stringify(searchField))
+    return this.http.post<any>(this._searchCourseUrl, search);
   }
 }
