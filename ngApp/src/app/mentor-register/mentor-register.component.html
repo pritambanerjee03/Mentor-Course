@@ -16,7 +16,7 @@
                 [class.has-success]="userNameControl.valid">
                 <label for="email" class="control-label">Username</label>
                 <input type="text" [(ngModel)]="registerMentorData.email" id="email" name="email" class="form-control rounded-0" 
-                #userNameControl="ngModel" required>
+                #userNameControl="ngModel" required placeholder="Enter Your Email">
                 <span class="help-block text-danger"
                     *ngIf="userNameControl.invalid && userNameControl.touched">
                Mentor Email is Required
@@ -27,7 +27,7 @@
                 [class.has-success]="userPasswordControl.valid">
                 <label for="password" class="control-label">Password</label>
                 <input type="password" [(ngModel)]="registerMentorData.password" id="password" name="password" class="form-control rounded-0"  
-                #userPasswordControl="ngModel" required>
+                #userPasswordControl="ngModel" minlength="6" required  minlength="6" required placeholder="6 characters minimum">
                 <span class="help-block text-danger"
                     *ngIf="userPasswordControl.invalid && userPasswordControl.touched">
                 Mentor Password is Required

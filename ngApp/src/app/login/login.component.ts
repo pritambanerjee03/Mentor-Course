@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       res => {
         localStorage.setItem('token', res.sample.key)
         localStorage.setItem('userEmail',res.sample.email)
-        this._router.navigate(['/special'])
+        this._router.navigate(['/events'])
       },
       err => {this.errorServerMessage = err.error;  }
     ) 

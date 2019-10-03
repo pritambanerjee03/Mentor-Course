@@ -27,6 +27,7 @@ import { AdminBodyComponent } from './admin-body/admin-body.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
+import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
 
 
 
@@ -50,7 +51,8 @@ import { SearchCourseComponent } from './search-course/search-course.component';
     AdminBodyComponent,
     AdminLoginComponent,
     NotFound404Component,
-    SearchCourseComponent
+    SearchCourseComponent,
+    OngoingCoursesComponent
   ],
   imports: [
     BrowserModule,

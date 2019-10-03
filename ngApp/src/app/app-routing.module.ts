@@ -16,7 +16,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { ViewCoursesComponent } from './view-courses/view-courses.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { AdminBodyComponent } from './admin-body/admin-body.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component'; 
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
 import { NotFound404Component } from './not-found404/not-found404.component';   
 const routes: Routes = [
   {
@@ -71,14 +72,17 @@ const routes: Routes = [
   },
   {
     path: 'addCourses',
+    //canActivateAdmin: [AuthGuard],
     component: AddCourseComponent
   },
   {
     path: 'viewCourses',
+    //canActivateAdmin: [AuthGuard],
     component: ViewCoursesComponent
   },
   {
     path: 'editCourses',
+    //canActivateAdmin: [AuthGuard],
     component: EditCourseComponent
   },
   {
@@ -88,6 +92,10 @@ const routes: Routes = [
   {
     path: 'admin-login',
     component: AdminLoginComponent
+  },
+  {
+    path: 'ongoingCourses',
+    component: OngoingCoursesComponent
   },
   {
     path: '**',
