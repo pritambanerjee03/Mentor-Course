@@ -5,6 +5,8 @@ import { RegisterComponent } from './register/register.component'
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthGuard } from './auth.guard';
+import { AuthAdminGuard } from './auth-admin.guard';
+import { AuthMentorGuard } from './auth-mentor.guard';
 import { StudentBodyComponent } from './student-body/student-body.component';
 import { MentorBodyComponent } from './mentor-body/mentor-body.component';
 import { MentorLoginComponent } from './mentor-login/mentor-login.component';
@@ -64,25 +66,27 @@ const routes: Routes = [
   },
   {
     path: 'courses',
+    canActivate: [AuthMentorGuard],
     component: CoursesComponent
   },
   {
     path: 'mentorProfile',
+    canActivate: [AuthMentorGuard],
     component: ProfileComponent
   },
   {
     path: 'addCourses',
-    //canActivateAdmin: [AuthGuard],
+  canActivate: [AuthAdminGuard],
     component: AddCourseComponent
   },
   {
     path: 'viewCourses',
-    //canActivateAdmin: [AuthGuard],
+    canActivate: [AuthAdminGuard],
     component: ViewCoursesComponent
   },
   {
     path: 'editCourses',
-    //canActivateAdmin: [AuthGuard],
+    canActivate: [AuthAdminGuard],
     component: EditCourseComponent
   },
   {

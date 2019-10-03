@@ -28,6 +28,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
 import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.component';
+import { AuthAdminGuard } from './auth-admin.guard';
+import { AuthMentorGuard } from './auth-mentor.guard';
 
 
 
@@ -60,7 +62,7 @@ import { OngoingCoursesComponent } from './ongoing-courses/ongoing-courses.compo
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, EventService, 
+  providers: [AuthService, AuthGuard, AuthAdminGuard, AuthMentorGuard, EventService, 
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
