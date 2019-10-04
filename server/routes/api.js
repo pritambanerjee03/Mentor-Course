@@ -72,13 +72,15 @@ router.get('/special', verifyToken, (req, res) => {
   });
 });
 
-router.post('/special', verifyToken, (req, res) => {
+router.post('/special', (req, res) => {
   let SpecialEventData = req.body
+
+  delete SpecialEventData._id;
+  
   userId = req.body.studentId
   console.log("*******from Post Method Api*****"+ userId);
 
-  EnrolledCourse.findOne({ course_id: SpecialEventData.course_id , 
-     name: SpecialEventData.name , studentId: SpecialEventData.studentId }, (err, eventdetails) => {
+  EnrolledCourse.findOne({ name: SpecialEventData.name , studentId: SpecialEventData.studentId }, (err, eventdetails) => {
     if (!eventdetails) {
       let specialevents = new EnrolledCourse(SpecialEventData)
       specialevents.save((err, enrolledEvents) => {
@@ -94,6 +96,7 @@ router.post('/special', verifyToken, (req, res) => {
       console.log(err+" ******Alraedy A Course exist") 
     }
   })
+  
 });
 
 router.get('/courses',(req, res) => {
