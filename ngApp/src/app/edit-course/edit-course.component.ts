@@ -26,9 +26,6 @@ export class EditCourseComponent implements OnInit {
        },
        err => console.log(err)
      ) 
-   
-     
- 
  }
 
 }

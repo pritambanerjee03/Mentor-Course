@@ -14,6 +14,8 @@ export class EventService {
   private _addCourseUrl = "http://localhost:3000/api/addCourse";
   private _updateCourseUrl = "http://localhost:3000/api/editCourse";
   private _searchCourseUrl = "http://localhost:3000/api/searchCourse";
+  private _getMentorUrl = "http://localhost:3000/api/getMentor";
+  private _updateMentorUrl = "http://localhost:3000/api/editMentor";
   constructor(private http: HttpClient) { }
 
   getEvents() {
@@ -57,5 +59,13 @@ export class EventService {
     const search = {searchItem: searchField};
     console.log('eventService: ' + JSON.stringify(searchField))
     return this.http.post<any>(this._searchCourseUrl, search);
+  }
+
+  getMentorDetails() {
+    return this.http.get<any>(this._getMentorUrl)
+  }
+
+  editMentorDetails(mentorData) {
+    return this.http.put<any>(this._updateMentorUrl, mentorData)
   }
 }

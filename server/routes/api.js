@@ -157,7 +157,10 @@ router.post('/login', (req, res) => {
 router.post('/mentorRegister', (req, res) => {
   let mentorData = req.body
   teacherId = req.body.email
-  
+  //mentorData.name = ""
+  //mentorData.technology = ""
+  //mentorData.timings = ""
+  console.log("****from mentor register api ***"+JSON.stringify(mentorData)) 
   Mentor.findOne({email: mentorData.email}, (err, mentordetails) => {
     if (!mentordetails) {
       let mentor = new Mentor(mentorData)
@@ -300,6 +303,30 @@ router.post('/searchCourse', (req, res) => {
       if (!err) { res.send(docs); }
       else { console.log('Error in Retriving Employees :' + JSON.stringify(err, undefined, 2)); }
   });
+});
+
+router.get('/getMentor',(req, res) => {
+
+  console.log("******from mentors get method Api**" + teacherId);
+  Mentor.find({ email: teacherId },(err, docs) => {
+      if (!err) { res.send(docs); }
+      else { console.log('Error in Retriving Courses :' + JSON.stringify(err, undefined, 2)); }
+  });
+});
+
+router.put('/editMentor', (req, res) => {
+  let editCourseData = req.body
+  console.log("************edit mentor*****"+ JSON.stringify(editCourseData))
+  let MentorId = editCourseData[0]._id
+  console.log("************edit mentor s Id*****"+ MentorId)
+  Mentor.findByIdAndUpdate(MentorId, editCourseData[0], {new: true},(err, MentorEdited) => {
+    if (err) {
+      console.log(err)      
+    } else {
+      console.log("************edit mentor after metod*****"+ JSON.stringify(MentorEdited))
+      res.status(200).send(MentorEdited)
+    }
+  })
 });
 
 module.exports = router;

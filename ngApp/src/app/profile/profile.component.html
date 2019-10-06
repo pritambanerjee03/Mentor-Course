@@ -1,3 +1,84 @@
 <app-mentor-body></app-mentor-body>
 
-<p>profile works!</p>
+<div class="py-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <span class="anchor" id="formLogin"></span>
+  
+        <!-- form card login --> 
+        <div class="card rounded-0">
+          <div class="card-header">
+            <h3 class="mb-0">Edit Details</h3>
+          </div>
+          <div class="card-body">
+            <form class="form" #mentorAddForm="ngForm">
+
+                <div class="form-group"
+                    [class.has-error]="addCourseIdControl.invalid && addCourseIdControl.touched" 
+                      [class.has-success]="addCourseIdControl.valid">
+                      <label for="password" class="control-label">Email</label>
+                      <input type="text" [(ngModel)]="mentorUpdateData[0].email" id="email" name="email" class="form-control rounded-0"  
+                      #addCourseIdControl="ngModel" required disabled>
+                      <span class="help-block text-danger"
+                          *ngIf="addCourseIdControl.invalid && addCourseIdControl.touched">
+                      Mentor Email is Required
+                    </span>
+                 </div>
+
+              <div class="form-group"
+              [class.has-error]="addCourseMentorEmailControl.invalid && addCourseMentorEmailControl.touched" 
+                [class.has-success]="addCourseMentorEmailControl.valid">
+                <label for="email" class="control-label">Name</label>
+                <input type="text" [(ngModel)]="mentorUpdateData[0].name" id="name" name="name" class="form-control rounded-0" 
+                #addCourseMentorEmailControl="ngModel" required>
+                <span class="help-block text-danger"
+                    *ngIf="addCourseMentorEmailControl.invalid && addCourseMentorEmailControl.touched">
+                Mentor Name is Required
+              </span>
+              </div>
+
+                <div class="form-group"
+              [class.has-error]="addCourseNameControl.invalid && addCourseNameControl.touched" 
+                [class.has-success]="addCourseNameControl.valid">
+                <label for="email" class="control-label">Technology</label>
+                <input type="text" [(ngModel)]="mentorUpdateData[0].technology" id="technology" name="technology" class="form-control rounded-0" 
+                #addCourseNameControl="ngModel" required>
+                <span class="help-block text-danger"
+                    *ngIf="addCourseNameControl.invalid && addCourseNameControl.touched">
+                Preferred Technology is Required
+              </span>
+              </div>
+
+              
+              <div class="form-group"
+              [class.has-error]="addCourseDescriptionControl.invalid && addCourseDescriptionControl.touched" 
+                [class.has-success]="addCourseDescriptionControl.valid">
+                <label for="email" class="control-label">Course Timings</label>
+                <input type="text" [(ngModel)]="mentorUpdateData[0].timings" id="timings" name="timings" class="form-control rounded-0" 
+                #addCourseDescriptionControl="ngModel" required>
+                <span class="help-block text-danger"
+                    *ngIf="addCourseDescriptionControl.invalid && addCourseDescriptionControl.touched">
+                Course Description is Required
+              </span>
+              </div>
+
+              <div class="form-group"
+              [class.has-error]="addCourseDescriptionControl.invalid && addCourseDescriptionControl.touched" 
+                [class.has-success]="addCourseDescriptionControl.valid">
+                
+                <input type="text" [(ngModel)]="mentorUpdateData[0]._id" id="_id" name="_id" class="form-control rounded-0" 
+                #addCourseDescriptionControl="ngModel" required hidden>
+              </div>
+
+              <button type="button" (click)="editMentorDetails()" [disabled]="mentorAddForm.invalid" class="btn btn-primary float-right">Update</button>
+            </form>
+          </div>
+          <!--/card-block-->
+        </div>
+        <!-- /form card login -->
+  
+      </div>
+  
+  
+    </div>
+  </div>
