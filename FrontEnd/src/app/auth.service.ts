@@ -40,7 +40,7 @@ export class AuthService {
   logoutMentor() {
     localStorage.removeItem('mentorToken')
     localStorage.removeItem('mentorEmail')
-    this._router.navigate(['/'])
+    this._router.navigate(['/mentor-login'])
   }
 
   registerAdmin(user) {
@@ -54,7 +54,7 @@ export class AuthService {
   logoutAdmin() {
     localStorage.removeItem('adminToken')
     localStorage.removeItem('adminEmail')
-    this._router.navigate(['/'])
+    this._router.navigate(['/admin-login'])
   }
 
   getToken() {
